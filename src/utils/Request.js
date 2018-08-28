@@ -1,4 +1,4 @@
-export default function request(url, options) {
+function request(url, options) {
   const defaultOptions = {
     credentials: 'include'
   };
@@ -55,4 +55,24 @@ export default function request(url, options) {
       console.log('parsing failed', ex);
       return ex;
     });
+}
+
+export function HttpGet(url) {
+  return request(url);
+}
+export function HttpPost(url, data) {
+  return request(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: data
+  });
+}
+export function HttpPostForm(url, data) {
+  return request(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    },
+    body: data
+  });
 }
